@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 5000;
 var cors = require("cors");
 const { pathDb } = require("./common/config.js");
-
+// app.use(cors());
 const { createServer } = require("http");
 // The http.createServer() method turns your computer into an HTTP server.
 const { Server } = require("socket.io");
@@ -39,8 +39,6 @@ const start = () => {
       .connect(pathDb, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        // useCreateIndex: true,
-        // auth: { username: "alice", password: "gsfd436rdsfg" },
         serverSelectionTimeoutMS: 30000,
       })
       .then(() => {
