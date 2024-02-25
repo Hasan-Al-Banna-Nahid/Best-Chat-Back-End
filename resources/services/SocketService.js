@@ -15,6 +15,7 @@ module.exports = {
           credentials: true,
           allowedHeaders: ["Content-Type", "Authorization"],
         },
+
         transports: ["websocket", "polling"],
         upgradeTimeout: 1000000000,
       });

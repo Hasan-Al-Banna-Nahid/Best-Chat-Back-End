@@ -12,6 +12,8 @@ const app = express();
 const { SocketService } = require("./resources/services/SocketService.js");
 
 const { authRouter, userRouter, chatRouter } = require("./resources/routers");
+const { ObjectID, MongoClient, ServerApiVersion } = require("mongodb");
+const { ObjectId } = require("mongodb");
 
 app.use(
   cors({
@@ -26,21 +28,15 @@ app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/chats", chatRouter);
 
-//io
 const server = createServer(app);
 // http.createServer(requestListener);
 // requestListener	Optional. Specifies a function to be executed every time the server gets a request.
-
 SocketService(server);
 
 const start = () => {
   try {
     mongoose
-      .connect(pathDb, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        serverSelectionTimeoutMS: 30000,
-      })
+      .connect(pathDb)
       .then(() => {
         console.log("Connected to MongoDB");
       })
